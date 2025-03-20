@@ -101,3 +101,24 @@ class JobError(Exception):
         super().__init__(
             f"Error concerning job {job_id}" + (": {detail} " if detail else "")
         )
+
+class PilotNotFoundError(Exception):
+    def __init__(self, pilot_ref: str, detail: str | None = None):
+        self.pilot_ref: str = pilot_ref
+        self.detail = detail
+        super().__init__(
+            f"Pilot with reference {pilot_ref} not found"
+            + (": {detail} " if detail else "")
+        )
+
+class DBInInvalidStateError(Exception):
+    def __init__(self, database_name: str, table_name: str | None, detail: str | None = None):
+        self.database_name: str = database_name
+        self.table_name: str = table_name
+        self.detail = detail
+        super().__init__(
+            f"Database {database_name}"
+            + (", especially Table {table_name}," if table_name else "")
+            + " has been found in a corrupted state"
+            + (": {detail} " if detail else "")
+        )

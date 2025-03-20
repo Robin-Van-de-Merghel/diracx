@@ -58,3 +58,10 @@ class PilotOutput(PilotAgentsDBBase):
     pilot_id = Column("PilotID", Integer, primary_key=True)
     std_output = Column("StdOutput", Text)
     std_error = Column("StdError", Text)
+
+class PilotRegistrations(PilotAgentsDBBase):
+    __tablename__ = "PilotRegistrations"
+
+    pilot_job_reference = Column("PilotJobReference")
+    pilot_secret = Column("PilotSecret")
+    pilot_secret_use_count = Column("PilotSecretUseCount")
