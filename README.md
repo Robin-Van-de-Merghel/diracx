@@ -5,6 +5,7 @@
 
 # DiracX
 
+test
 This repository contains the code for DiracX.
 It is still incomplete. Check the current progress on our [status board](https://github.com/orgs/DIRACGrid/projects/2/views/2).
 
