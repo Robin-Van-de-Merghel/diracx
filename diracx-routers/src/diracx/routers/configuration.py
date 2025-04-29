@@ -24,7 +24,6 @@ router = DiracxRouter()
 async def serve_config(
     config: Config,
     response: Response,
-    # check_permissions: OpenAccessPolicyCallable,
     if_none_match: Annotated[str | None, Header()] = None,
     if_modified_since: Annotated[str | None, Header()] = None,
 ):
@@ -35,7 +34,6 @@ async def serve_config(
     If If-Modified-Since is given and is newer than latest,
         return 304: this is to avoid flip/flopping
     """
-    # await check_permissions()
     headers = {
         "ETag": config._hexsha,
         "Last-Modified": config._modified.strftime(LAST_MODIFIED_FORMAT),
