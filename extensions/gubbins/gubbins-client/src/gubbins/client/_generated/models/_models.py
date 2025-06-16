@@ -138,14 +138,13 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
     :vartype vo: str
     :ivar grid_type: Grid type of the pilots.
     :vartype grid_type: str
-    :ivar grid_site: Pilots grid site.
-    :vartype grid_site: str
-    :ivar destination_site: Pilots destination site.
-    :vartype destination_site: str
     :ivar pilot_references: Association of a pilot reference with a pilot stamp.
     :vartype pilot_references: dict[str, str]
+<<<<<<< HEAD
     :ivar status_reason: Status reason of the pilots.
     :vartype status_reason: str
+=======
+>>>>>>> 3e79789e (feat: Add pilot auth)
     :ivar generate_secrets: If we want to create secrets with the pilots.
     :vartype generate_secrets: bool
     :ivar pilot_secret_use_count_max: How much time can a secret be used.
@@ -161,10 +160,11 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         "pilot_stamps": {"key": "pilot_stamps", "type": "[str]"},
         "vo": {"key": "vo", "type": "str"},
         "grid_type": {"key": "grid_type", "type": "str"},
-        "grid_site": {"key": "grid_site", "type": "str"},
-        "destination_site": {"key": "destination_site", "type": "str"},
         "pilot_references": {"key": "pilot_references", "type": "{str}"},
+<<<<<<< HEAD
         "status_reason": {"key": "status_reason", "type": "str"},
+=======
+>>>>>>> 3e79789e (feat: Add pilot auth)
         "generate_secrets": {"key": "generate_secrets", "type": "bool"},
         "pilot_secret_use_count_max": {"key": "pilot_secret_use_count_max", "type": "int"},
     }
@@ -175,10 +175,11 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         pilot_stamps: List[str],
         vo: str,
         grid_type: str = "Dirac",
-        grid_site: str = "Unknown",
-        destination_site: str = "NotAssigned",
         pilot_references: Optional[Dict[str, str]] = None,
+<<<<<<< HEAD
         status_reason: str = "Unknown",
+=======
+>>>>>>> 3e79789e (feat: Add pilot auth)
         generate_secrets: bool = True,
         pilot_secret_use_count_max: int = 1,
         **kwargs: Any
@@ -190,14 +191,13 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         :paramtype vo: str
         :keyword grid_type: Grid type of the pilots.
         :paramtype grid_type: str
-        :keyword grid_site: Pilots grid site.
-        :paramtype grid_site: str
-        :keyword destination_site: Pilots destination site.
-        :paramtype destination_site: str
         :keyword pilot_references: Association of a pilot reference with a pilot stamp.
         :paramtype pilot_references: dict[str, str]
+<<<<<<< HEAD
         :keyword status_reason: Status reason of the pilots.
         :paramtype status_reason: str
+=======
+>>>>>>> 3e79789e (feat: Add pilot auth)
         :keyword generate_secrets: If we want to create secrets with the pilots.
         :paramtype generate_secrets: bool
         :keyword pilot_secret_use_count_max: How much time can a secret be used.
@@ -207,10 +207,11 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         self.pilot_stamps = pilot_stamps
         self.vo = vo
         self.grid_type = grid_type
-        self.grid_site = grid_site
-        self.destination_site = destination_site
         self.pilot_references = pilot_references
+<<<<<<< HEAD
         self.status_reason = status_reason
+=======
+>>>>>>> 3e79789e (feat: Add pilot auth)
         self.generate_secrets = generate_secrets
         self.pilot_secret_use_count_max = pilot_secret_use_count_max
 
@@ -255,8 +256,13 @@ class BodyPilotsCreatePilotSecrets(_serialization.Model):
         self.pilot_secret_use_count_max = pilot_secret_use_count_max
 
 
+<<<<<<< HEAD
 class BodyPilotsPerformSecretExchange(_serialization.Model):
     """Body_pilots_perform_secret_exchange.
+=======
+class BodyPilotsPilotLogin(_serialization.Model):
+    """Body_pilots_pilot_login.
+>>>>>>> 3e79789e (feat: Add pilot auth)
 
     All required parameters must be populated in order to send to server.
 

@@ -17,7 +17,11 @@ from ._models import (  # type: ignore
     BodyPilotsAddJobsToPilot,
     BodyPilotsAddPilotStamps,
     BodyPilotsCreatePilotSecrets,
+<<<<<<< HEAD
     BodyPilotsPerformSecretExchange,
+=======
+    BodyPilotsPilotLogin,
+>>>>>>> 3e79789e (feat: Add pilot auth)
     BodyPilotsRefreshPilotTokens,
     BodyPilotsUpdatePilotFields,
     GroupInfo,
@@ -76,7 +80,11 @@ __all__ = [
     "BodyPilotsAddJobsToPilot",
     "BodyPilotsAddPilotStamps",
     "BodyPilotsCreatePilotSecrets",
+<<<<<<< HEAD
     "BodyPilotsPerformSecretExchange",
+=======
+    "BodyPilotsPilotLogin",
+>>>>>>> 3e79789e (feat: Add pilot auth)
     "BodyPilotsRefreshPilotTokens",
     "BodyPilotsUpdatePilotFields",
     "GroupInfo",
