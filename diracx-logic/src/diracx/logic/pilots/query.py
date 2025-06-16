@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from diracx.core.exceptions import PilotNotFoundError
+from diracx.core.exceptions import PilotNotFoundError, SecretNotFoundError
 from diracx.core.models import (
     ScalarSearchOperator,
     ScalarSearchSpec,
@@ -110,3 +110,69 @@ async def get_pilot_jobs_ids_by_pilot_id(
     )
 
     return [job["JobID"] for job in jobs]
+
+
+async def get_secrets_by_hashed_secrets_bulk(
+    pilot_db: PilotAgentsDB, hashed_secrets: list[bytes], parameters: list[str] = []
+) -> list[dict[Any, Any]]:
+    if parameters:
+        parameters.append("HashedSecret")
+
+    _, pilots = await pilot_db.search_secrets(
+        parameters=parameters,
+        search=[
+            VectorSearchSpec(
+                parameter="HashedSecret",
+                operator=VectorSearchOperator.IN,
+                values=hashed_secrets,
+            )
+        ],
+        sorts=[],
+        distinct=True,
+        per_page=MAX_PER_PAGE,
+    )
+
+    # Custom handling, to see which hashed_secrets does not exist
+    # TODO: Add missing in the error
+    found_keys = {row["HashedSecret"] for row in pilots}
+    missing = set(hashed_secrets) - found_keys
+
+    if missing:
+        raise SecretNotFoundError(
+            data={"hashed_secrets": str(missing)}, detail=str(missing)
+        )
+
+    return pilots
+
+
+async def get_secrets_by_uuid_bulk(
+    pilot_db: PilotAgentsDB, secret_uuids: list[str], parameters: list[str] = []
+) -> list[dict[Any, Any]]:
+    if parameters:
+        parameters.append("SecretUUID")  # To avoid bug later on `found_keys = ...`
+
+    _, secrets = await pilot_db.search_secrets(
+        parameters=parameters,
+        search=[
+            VectorSearchSpec(
+                parameter="SecretUUID",
+                operator=VectorSearchOperator.IN,
+                values=secret_uuids,
+            )
+        ],
+        sorts=[],
+        distinct=True,
+        per_page=MAX_PER_PAGE,
+    )
+
+    # Custom handling, to see which secret_uuid does not exist
+    # TODO: Add missing in the error
+    found_keys = {row["SecretUUID"] for row in secrets}
+    missing = set(secret_uuids) - found_keys
+
+    if missing:
+        raise SecretNotFoundError(
+            data={"secret_uuid": str(missing)}, detail=str(missing)
+        )
+
+    return secrets

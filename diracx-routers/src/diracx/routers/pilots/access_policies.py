@@ -17,6 +17,8 @@ from diracx.routers.utils.users import AuthorizedUserInfo
 class ActionType(StrEnum):
     # Create a pilot
     CREATE_PILOT = auto()
+    # Create a secret
+    CREATE_SECRET = auto()
     # Change some pilot fields
     CHANGE_PILOT_FIELD = auto()
     # Read some pilot info
@@ -92,7 +94,7 @@ class PilotManagementAccessPolicy(BaseAccessPolicy):
                 detail="You don't have the rights to create pilots.",
             )
 
-        if action == ActionType.CREATE_PILOT:
+        if action in {ActionType.CREATE_PILOT, ActionType.CREATE_SECRET}:
             return
 
         if action == ActionType.CHANGE_PILOT_FIELD:
