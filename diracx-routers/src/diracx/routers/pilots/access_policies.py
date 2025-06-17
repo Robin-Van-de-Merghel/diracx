@@ -23,6 +23,8 @@ class ActionType(StrEnum):
     CHANGE_PILOT_FIELD = auto()
     # Read some pilot info
     READ_PILOT_FIELDS = auto()
+    # Read pilot logs
+    READ_PILOT_LOGS = auto()
 
 
 class PilotManagementAccessPolicy(BaseAccessPolicy):
@@ -44,7 +46,7 @@ class PilotManagementAccessPolicy(BaseAccessPolicy):
     ):
         assert action, "action is a mandatory parameter"
 
-        if action == ActionType.READ_PILOT_FIELDS:
+        if action in {ActionType.READ_PILOT_FIELDS, ActionType.READ_PILOT_LOGS}:
             if NORMAL_USER in user_info.properties:
                 return
 
