@@ -378,3 +378,15 @@ class PilotRefreshTokenPayload(BaseTokenPayload):
 
 class PilotCredentialsInfo(PilotSecretsInfo):
     pilot_stamp: str
+
+
+class LogLine(BaseModel):
+    timestamp: str
+    severity: str
+    message: str
+    scope: str
+
+
+class LogMessage(BaseModel):
+    pilot_stamp: str
+    lines: list[LogLine]
