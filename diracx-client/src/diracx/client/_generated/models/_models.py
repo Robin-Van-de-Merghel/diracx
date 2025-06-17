@@ -679,6 +679,86 @@ class JobSummaryParamsSearchItem(_serialization.Model):
     """JobSummaryParamsSearchItem."""
 
 
+class LogLine(_serialization.Model):
+    """LogLine.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar timestamp: Timestamp. Required.
+    :vartype timestamp: str
+    :ivar severity: Severity. Required.
+    :vartype severity: str
+    :ivar message: Message. Required.
+    :vartype message: str
+    :ivar scope: Scope. Required.
+    :vartype scope: str
+    """
+
+    _validation = {
+        "timestamp": {"required": True},
+        "severity": {"required": True},
+        "message": {"required": True},
+        "scope": {"required": True},
+    }
+
+    _attribute_map = {
+        "timestamp": {"key": "timestamp", "type": "str"},
+        "severity": {"key": "severity", "type": "str"},
+        "message": {"key": "message", "type": "str"},
+        "scope": {"key": "scope", "type": "str"},
+    }
+
+    def __init__(self, *, timestamp: str, severity: str, message: str, scope: str, **kwargs: Any) -> None:
+        """
+        :keyword timestamp: Timestamp. Required.
+        :paramtype timestamp: str
+        :keyword severity: Severity. Required.
+        :paramtype severity: str
+        :keyword message: Message. Required.
+        :paramtype message: str
+        :keyword scope: Scope. Required.
+        :paramtype scope: str
+        """
+        super().__init__(**kwargs)
+        self.timestamp = timestamp
+        self.severity = severity
+        self.message = message
+        self.scope = scope
+
+
+class LogMessage(_serialization.Model):
+    """LogMessage.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar pilot_stamp: Pilot Stamp. Required.
+    :vartype pilot_stamp: str
+    :ivar lines: Lines. Required.
+    :vartype lines: list[~_generated.models.LogLine]
+    """
+
+    _validation = {
+        "pilot_stamp": {"required": True},
+        "lines": {"required": True},
+    }
+
+    _attribute_map = {
+        "pilot_stamp": {"key": "pilot_stamp", "type": "str"},
+        "lines": {"key": "lines", "type": "[LogLine]"},
+    }
+
+    def __init__(self, *, pilot_stamp: str, lines: List["_models.LogLine"], **kwargs: Any) -> None:
+        """
+        :keyword pilot_stamp: Pilot Stamp. Required.
+        :paramtype pilot_stamp: str
+        :keyword lines: Lines. Required.
+        :paramtype lines: list[~_generated.models.LogLine]
+        """
+        super().__init__(**kwargs)
+        self.pilot_stamp = pilot_stamp
+        self.lines = lines
+
+
 class Metadata(_serialization.Model):
     """Metadata.
 
