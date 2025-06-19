@@ -112,6 +112,19 @@ async def get_pilot_jobs_ids_by_pilot_id(
     return [job["JobID"] for job in jobs]
 
 
+async def get_pilot_jobs_ids_by_stamp(
+    pilot_db: PilotAgentsDB, pilot_stamp: str
+) -> list[int]:
+    pilot_ids = await get_pilot_ids_by_stamps(
+        pilot_db=pilot_db,
+        pilot_stamps=[pilot_stamp],
+    )
+
+    return await get_pilot_jobs_ids_by_pilot_id(
+        pilot_db=pilot_db, pilot_id=pilot_ids[0]
+    )
+
+
 async def get_secrets_by_hashed_secrets_bulk(
     pilot_db: PilotAgentsDB, hashed_secrets: list[bytes], parameters: list[str] = []
 ) -> list[dict[Any, Any]]:

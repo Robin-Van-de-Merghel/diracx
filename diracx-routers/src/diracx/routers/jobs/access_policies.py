@@ -49,7 +49,8 @@ class WMSAccessPolicy(BaseAccessPolicy):
 
         if action == ActionType.PILOT:
             # TODO: For now we map this to MANAGE but it should be changed once
-            # we have pilot credentials
+            # Pilots will eventually be removed from this access policy
+            # See #572
             action = ActionType.MANAGE
 
         if action == ActionType.CREATE:

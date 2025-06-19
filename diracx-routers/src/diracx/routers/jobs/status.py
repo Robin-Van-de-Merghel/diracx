@@ -74,6 +74,8 @@ async def set_job_statuses(
     check_permissions: CheckWMSPolicyCallable,
     force: bool = False,
 ) -> SetJobStatusReturn:
+    # FIXME: Pilots will eventually be removed from this endpoint
+    # See #572
     await check_permissions(
         action=ActionType.MANAGE, job_db=job_db, job_ids=list(job_update)
     )
@@ -121,6 +123,8 @@ async def add_heartbeat(
 
     The `data` parameter and return value are mappings keyed by job ID.
     """
+    # FIXME: Pilots will eventually be removed from this endpoint
+    # See #572
     await check_permissions(action=ActionType.PILOT, job_db=job_db, job_ids=list(data))
 
     await add_heartbeat_bl(
@@ -171,6 +175,8 @@ async def patch_metadata(
     job_parameters_db: JobParametersDB,
     check_permissions: CheckWMSPolicyCallable,
 ):
+    # FIXME: Pilots will eventually be removed from this endpoint
+    # See #572
     await check_permissions(action=ActionType.MANAGE, job_db=job_db, job_ids=updates)
     try:
         await set_job_parameters_or_attributes_bl(updates, job_db, job_parameters_db)
