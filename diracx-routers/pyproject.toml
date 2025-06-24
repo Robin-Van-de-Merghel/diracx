@@ -46,6 +46,8 @@ auth = "diracx.routers.auth:router"
 config = "diracx.routers.configuration:router"
 health = "diracx.routers.health:router"
 jobs = "diracx.routers.jobs:router"
+test_with_auth = "diracx.routers.test_with_auth:router"
+test_without_auth = "diracx.routers.test_without_auth:router"
 
 [project.entry-points."diracx.access_policies"]
 WMSAccessPolicy = "diracx.routers.jobs.access_policies:WMSAccessPolicy"
