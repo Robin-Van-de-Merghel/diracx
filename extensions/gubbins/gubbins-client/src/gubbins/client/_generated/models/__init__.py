@@ -18,10 +18,14 @@ from ._models import (  # type: ignore
     BodyPilotsAddPilotStamps,
     BodyPilotsCreatePilotSecrets,
 <<<<<<< HEAD
+<<<<<<< HEAD
     BodyPilotsPerformSecretExchange,
 =======
     BodyPilotsPilotLogin,
 >>>>>>> 3e79789e (feat: Add pilot auth)
+=======
+    BodyPilotsPerformSecretExchange,
+>>>>>>> 2099d7ba (fix: Generate client)
     BodyPilotsRefreshPilotTokens,
     BodyPilotsUpdatePilotFields,
     ExtendedMetadata,
@@ -81,10 +85,14 @@ __all__ = [
     "BodyPilotsAddPilotStamps",
     "BodyPilotsCreatePilotSecrets",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "BodyPilotsPerformSecretExchange",
 =======
     "BodyPilotsPilotLogin",
 >>>>>>> 3e79789e (feat: Add pilot auth)
+=======
+    "BodyPilotsPerformSecretExchange",
+>>>>>>> 2099d7ba (fix: Generate client)
     "BodyPilotsRefreshPilotTokens",
     "BodyPilotsUpdatePilotFields",
     "ExtendedMetadata",
