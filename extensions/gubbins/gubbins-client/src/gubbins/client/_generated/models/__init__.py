@@ -17,16 +17,9 @@ from ._models import (  # type: ignore
     BodyPilotsAddJobsToPilot,
     BodyPilotsAddPilotStamps,
     BodyPilotsCreatePilotSecrets,
-<<<<<<< HEAD
-<<<<<<< HEAD
     BodyPilotsPerformSecretExchange,
-=======
-    BodyPilotsPilotLogin,
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-    BodyPilotsPerformSecretExchange,
->>>>>>> 2099d7ba (fix: Generate client)
     BodyPilotsRefreshPilotTokens,
+    BodyPilotsSendMessage,
     BodyPilotsUpdatePilotFields,
     ExtendedMetadata,
     GroupInfo,
@@ -38,6 +31,7 @@ from ._models import (  # type: ignore
     JobStatusUpdate,
     JobSummaryParams,
     JobSummaryParamsSearchItem,
+    LogLine,
     OpenIDConfiguration,
     PilotCredentialsInfo,
     PilotFieldsMapping,
@@ -84,16 +78,9 @@ __all__ = [
     "BodyPilotsAddJobsToPilot",
     "BodyPilotsAddPilotStamps",
     "BodyPilotsCreatePilotSecrets",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "BodyPilotsPerformSecretExchange",
-=======
-    "BodyPilotsPilotLogin",
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-    "BodyPilotsPerformSecretExchange",
->>>>>>> 2099d7ba (fix: Generate client)
     "BodyPilotsRefreshPilotTokens",
+    "BodyPilotsSendMessage",
     "BodyPilotsUpdatePilotFields",
     "ExtendedMetadata",
     "GroupInfo",
@@ -105,6 +92,7 @@ __all__ = [
     "JobStatusUpdate",
     "JobSummaryParams",
     "JobSummaryParamsSearchItem",
+    "LogLine",
     "OpenIDConfiguration",
     "PilotCredentialsInfo",
     "PilotFieldsMapping",

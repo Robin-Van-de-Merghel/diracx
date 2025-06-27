@@ -144,16 +144,8 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
     :vartype destination_site: str
     :ivar pilot_references: Association of a pilot reference with a pilot stamp.
     :vartype pilot_references: dict[str, str]
-<<<<<<< HEAD
-<<<<<<< HEAD
     :ivar status_reason: Status reason of the pilots.
     :vartype status_reason: str
-=======
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-    :ivar status_reason: Status reason of the pilots.
-    :vartype status_reason: str
->>>>>>> 2099d7ba (fix: Generate client)
     :ivar generate_secrets: If we want to create secrets with the pilots.
     :vartype generate_secrets: bool
     :ivar pilot_secret_use_count_max: How much time can a secret be used.
@@ -172,14 +164,7 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         "grid_site": {"key": "grid_site", "type": "str"},
         "destination_site": {"key": "destination_site", "type": "str"},
         "pilot_references": {"key": "pilot_references", "type": "{str}"},
-<<<<<<< HEAD
-<<<<<<< HEAD
         "status_reason": {"key": "status_reason", "type": "str"},
-=======
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-        "status_reason": {"key": "status_reason", "type": "str"},
->>>>>>> 2099d7ba (fix: Generate client)
         "generate_secrets": {"key": "generate_secrets", "type": "bool"},
         "pilot_secret_use_count_max": {"key": "pilot_secret_use_count_max", "type": "int"},
     }
@@ -193,14 +178,7 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         grid_site: str = "Unknown",
         destination_site: str = "NotAssigned",
         pilot_references: Optional[Dict[str, str]] = None,
-<<<<<<< HEAD
-<<<<<<< HEAD
         status_reason: str = "Unknown",
-=======
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-        status_reason: str = "Unknown",
->>>>>>> 2099d7ba (fix: Generate client)
         generate_secrets: bool = True,
         pilot_secret_use_count_max: int = 1,
         **kwargs: Any
@@ -218,16 +196,8 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         :paramtype destination_site: str
         :keyword pilot_references: Association of a pilot reference with a pilot stamp.
         :paramtype pilot_references: dict[str, str]
-<<<<<<< HEAD
-<<<<<<< HEAD
         :keyword status_reason: Status reason of the pilots.
         :paramtype status_reason: str
-=======
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-        :keyword status_reason: Status reason of the pilots.
-        :paramtype status_reason: str
->>>>>>> 2099d7ba (fix: Generate client)
         :keyword generate_secrets: If we want to create secrets with the pilots.
         :paramtype generate_secrets: bool
         :keyword pilot_secret_use_count_max: How much time can a secret be used.
@@ -240,14 +210,7 @@ class BodyPilotsAddPilotStamps(_serialization.Model):
         self.grid_site = grid_site
         self.destination_site = destination_site
         self.pilot_references = pilot_references
-<<<<<<< HEAD
-<<<<<<< HEAD
         self.status_reason = status_reason
-=======
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-        self.status_reason = status_reason
->>>>>>> 2099d7ba (fix: Generate client)
         self.generate_secrets = generate_secrets
         self.pilot_secret_use_count_max = pilot_secret_use_count_max
 
@@ -292,18 +255,8 @@ class BodyPilotsCreatePilotSecrets(_serialization.Model):
         self.pilot_secret_use_count_max = pilot_secret_use_count_max
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class BodyPilotsPerformSecretExchange(_serialization.Model):
     """Body_pilots_perform_secret_exchange.
-=======
-class BodyPilotsPilotLogin(_serialization.Model):
-    """Body_pilots_pilot_login.
->>>>>>> 3e79789e (feat: Add pilot auth)
-=======
-class BodyPilotsPerformSecretExchange(_serialization.Model):
-    """Body_pilots_perform_secret_exchange.
->>>>>>> 2099d7ba (fix: Generate client)
 
     All required parameters must be populated in order to send to server.
 
@@ -366,6 +319,32 @@ class BodyPilotsRefreshPilotTokens(_serialization.Model):
         super().__init__(**kwargs)
         self.refresh_token = refresh_token
         self.pilot_stamp = pilot_stamp
+
+
+class BodyPilotsSendMessage(_serialization.Model):
+    """Body_pilots_send_message.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar lines: Message from the pilot to the logging system. Required.
+    :vartype lines: list[~_generated.models.LogLine]
+    """
+
+    _validation = {
+        "lines": {"required": True},
+    }
+
+    _attribute_map = {
+        "lines": {"key": "lines", "type": "[LogLine]"},
+    }
+
+    def __init__(self, *, lines: List["_models.LogLine"], **kwargs: Any) -> None:
+        """
+        :keyword lines: Message from the pilot to the logging system. Required.
+        :paramtype lines: list[~_generated.models.LogLine]
+        """
+        super().__init__(**kwargs)
+        self.lines = lines
 
 
 class BodyPilotsUpdatePilotFields(_serialization.Model):
@@ -745,6 +724,53 @@ class JobSummaryParams(_serialization.Model):
 
 class JobSummaryParamsSearchItem(_serialization.Model):
     """JobSummaryParamsSearchItem."""
+
+
+class LogLine(_serialization.Model):
+    """LogLine.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar timestamp: Timestamp. Required.
+    :vartype timestamp: str
+    :ivar severity: Severity. Required.
+    :vartype severity: str
+    :ivar message: Message. Required.
+    :vartype message: str
+    :ivar scope: Scope. Required.
+    :vartype scope: str
+    """
+
+    _validation = {
+        "timestamp": {"required": True},
+        "severity": {"required": True},
+        "message": {"required": True},
+        "scope": {"required": True},
+    }
+
+    _attribute_map = {
+        "timestamp": {"key": "timestamp", "type": "str"},
+        "severity": {"key": "severity", "type": "str"},
+        "message": {"key": "message", "type": "str"},
+        "scope": {"key": "scope", "type": "str"},
+    }
+
+    def __init__(self, *, timestamp: str, severity: str, message: str, scope: str, **kwargs: Any) -> None:
+        """
+        :keyword timestamp: Timestamp. Required.
+        :paramtype timestamp: str
+        :keyword severity: Severity. Required.
+        :paramtype severity: str
+        :keyword message: Message. Required.
+        :paramtype message: str
+        :keyword scope: Scope. Required.
+        :paramtype scope: str
+        """
+        super().__init__(**kwargs)
+        self.timestamp = timestamp
+        self.severity = severity
+        self.message = message
+        self.scope = scope
 
 
 class Metadata(_serialization.Model):
