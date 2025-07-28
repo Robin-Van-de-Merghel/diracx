@@ -1,5 +1,9 @@
 name: Integration Tests
 
+env:
+  DIRAC_REPO: https://github.com/Robin-Van-de-Merghel/DIRAC.git
+  DIRAC_BRANCH: robin-improve-ci
+
 on:
   push:
     branches:
@@ -21,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         dirac-branch:
-          - integration
+          - ${DIRAC_BRANCH:-integration}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,7 +41,7 @@ jobs:
       - name: Clone DIRAC
         run: |
           pip install typer pyyaml gitpython packaging
-          git clone https://github.com/DIRACGrid/DIRAC.git -b "${{ matrix.dirac-branch }}" /tmp/DIRACRepo
+          git clone ${DIRAC_REPO:-https://github.com/diracgrid/dirac.git} -b "${{ matrix.dirac-branch }}" /tmp/DIRACRepo
           echo "Current revision: $(git -C /tmp/DIRACRepo rev-parse HEAD)"
           # We need to cd in the directory for the integration_tests.py to work
       - name: Prepare environment
@@ -58,9 +62,9 @@ jobs:
         run: |
           has_error=0
           # TODO: set has_error=1 when we are ready to really run the tests
-          if [ -f server-tests-failed ]; then has_error=0; echo "Server tests failed"; fi
-          if [ -f client-tests-failed ]; then has_error=0; echo "Client tests failed"; fi
-          if [ -f pilot-tests-failed ]; then has_error=0; echo "Pilot tests failed"; fi
+          if [ -f server-tests-failed ]; then has_error=1; echo "Server tests failed"; fi
+          if [ -f client-tests-failed ]; then has_error=1; echo "Client tests failed"; fi
+          if [ -f pilot-tests-failed ]; then has_error=1; echo "Pilot tests failed"; fi
           if [ ${has_error} = 1 ]; then exit 1; fi
       - name: diracx logs
         if: ${{ failure() }}
